@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © MageRahul All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">sizechart_form.sizechart_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="DevAwesome\Sizechart\Block\Adminhtml\Sizechart\Edit\BackButton"/>
+            <!--			<button name="delete" class="DevAwesome\Sizechart\Block\Adminhtml\Sizechart\Edit\DeleteButton"/>-->
+            <button name="save" class="DevAwesome\Sizechart\Block\Adminhtml\Sizechart\Edit\SaveButton"/>
+            <button name="save_and_continue" class="DevAwesome\Sizechart\Block\Adminhtml\Sizechart\Edit\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>sizechart_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>sizechart_form.sizechart_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="sizechart_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider name="sizechart_form_data_source" class="DevAwesome\Sizechart\Model\Form\DataProvider">
+            <settings>
+                <requestFieldName>attribute_set_id</requestFieldName>
+                <primaryFieldName>attribute_set_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label>General</label>
+        </settings>
+        <field name="attribute_set_name" formElement="input" sortOrder="10">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Attribute Set Name</label>
+                <imports>
+                    <link name="value">${ $.provider }:data.sizechart.attribute_set_name</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="sizechart_image" formElement="imageUploader" sortOrder="20">
+            <settings>
+                <notice translate="true">This image will be displayed as sizechart image in the associated products of given sizechart.</notice>
+                <label translate="true">Sizechart Image</label>
+                <componentType>imageUploader</componentType>
+                <dataScope>sizechart_image</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>true</required>
+                        <previewTmpl>DevAwesome_Base/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>2097152</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">catalog/sizechart/upload</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

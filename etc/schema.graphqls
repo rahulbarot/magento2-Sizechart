@@ -1,0 +1,3 @@
+interface ProductInterface {
+    size_chart_image: String @doc(description: "Sizechart image based on Attribute Set.") @resolver(class: "DevAwesome\\Sizechart\\Model\\Resolver\\Product\\Sizechart")
+}

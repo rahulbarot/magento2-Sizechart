@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © MageRahul All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="DevAwesome\Sizechart\Model\ResourceModel\Entity\Attribute\Set\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">eav_attribute_set</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Eav\Model\ResourceModel\Entity\Attribute\Set</argument>
+        </arguments>
+    </type>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="sizechart_listing_data_source" xsi:type="string">DevAwesome\Sizechart\Model\ResourceModel\Entity\Attribute\Set\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+    <!-- Sizechart Image Upload -->
+    <virtualType name="DevAwesome\Base\Model\AbstractImageUpload">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">\DevAwesome\Sizechart\Model\Sizechart::SIZECHART_MEDIA_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">\DevAwesome\Sizechart\Model\Sizechart::SIZECHART_MEDIA_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="DevAwesome\Sizechart\Controller\Adminhtml\Sizechart\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">DevAwesome\Base\Model\AbstractImageUpload</argument>
+        </arguments>
+    </type>
+</config>
