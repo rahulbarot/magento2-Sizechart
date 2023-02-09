@@ -1,5 +1,9 @@
 # DevAwesome SizeChart for Magento 2
 
+[![Latest Stable Version](http://poser.pugx.org/devawesome/module-sizechart/v)](https://packagist.org/packages/devawesome/module-sizechart)
+[![Total Downloads](http://poser.pugx.org/devawesome/module-sizechart/downloads)](https://packagist.org/packages/devawesome/module-sizechart)
+[![License](http://poser.pugx.org/devawesome/module-sizechart/license)](https://packagist.org/packages/devawesome/module-sizechart)
+
 ## Main Functionalities
 Magento 2 : Product SizeChart module based on Attribute Sets. This module allows you to set product sizechart image in 
 Attribute Set. Based on the product attribute set, it will showcase the sizechart on frontend.
