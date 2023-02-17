@@ -1,3 +1,10 @@
 interface ProductInterface {
     size_chart_image: String @doc(description: "Sizechart image based on Attribute Set.") @resolver(class: "DevAwesome\\Sizechart\\Model\\Resolver\\Product\\Sizechart")
 }
+
+type StoreConfig {
+    sc_link_text : String  @doc(description: "Sizechart click button text")
+    sc_modal_title : String  @doc(description: "Sizechart modal heading title")
+    sc_modal_close_btn_text : String  @doc(description: "Sizechart modal close button text")
+    sc_modal_comments : String  @doc(description: "Sizechart modal comments")
+}

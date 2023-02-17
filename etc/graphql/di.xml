@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © MageRahul All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  <type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+    <arguments>
+      <argument name="extendedConfigData" xsi:type="array">
+        <item name="sc_link_text" xsi:type="string">sizechart/modal/link_text</item>
+        <item name="sc_modal_title" xsi:type="string">sizechart/modal/title</item>
+        <item name="sc_modal_close_btn_text" xsi:type="string">sizechart/modal/btn_text</item>
+        <item name="sc_modal_comments" xsi:type="string">sizechart/modal/comments</item>
+      </argument>
+    </arguments>
+  </type>
+</config>

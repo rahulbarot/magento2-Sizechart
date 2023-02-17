@@ -16,10 +16,28 @@
             <resource>DevAwesome_Sizechart::config_sizechart</resource>
             <group id="general" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
                 <label>General</label>
-                <field id="allowed_product_types" type="multiselect" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <field id="allowed_product_types" translate="label" showInDefault="1" type="multiselect" sortOrder="10" showInWebsite="0" showInStore="0">
                     <label>Allowed Product Types</label>
                     <comment>Sizechart will only get displayed for above selected product types.</comment>
                     <source_model>Magento\Catalog\Model\Product\Type</source_model>
+                </field>
+            </group>
+            <group id="modal" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Modal Settings</label>
+                <field id="link_text" translate="label" sortOrder="10" type="text" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Link Text</label>
+                    <comment>Size chart link text for PDP.</comment>
+                </field>
+                <field id="title" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Title</label>
+                    <comment>Popup Header Title.</comment>
+                </field>
+                <field id="btn_text" translate="label" sortOrder="30" type="text" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Close Button Text</label>
+                    <comment>Popup Header Title.</comment>
+                </field>
+                <field id="comments" translate="label" sortOrder="40" type="text" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Addiotional Comments</label>
                 </field>
             </group>
         </section>
