@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © MageRahul All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+/** @var $escaper \Magento\Framework\Escaper */
+
+$product = $block->getProduct();
+$viewModel = $block->getData('viewModel');
+$imageUrl = $viewModel->getSizeChartImageUrl($product);
+$configData = $viewModel->getSizeChartConfig();
+?>
+<?php if($imageUrl !== null): ?>
+    <a id="btn_sizechart" href="javascript:void(0);"><span><?= $block->escapeHtml($configData->getLinkText()) ?></span></a>
+
+    <div id="modal_sizechart">
+        <div class="modal-body-content sizechart-content">
+            <img class="size-chart-image" src="<?= $imageUrl ?>" alt="size_chart">
+            <p class="size-chart-desc"><?= $block->escapeHtml($configData->getComments()) ?></p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        require([
+            "jquery",
+            "Magento_Ui/js/modal/modal"
+        ],function($, modal) {
+
+            var modal_title = "<?= $block->escapeHtml($configData->getTitle()) ?>";
+            var cls_btn_text = "<?= $block->escapeHtml($configData->getBtnText()) ?>";
+
+            var options = {
+                type: 'popup',
+                responsive: true,
+                title: modal_title,
+                buttons: [{
+                    text: cls_btn_text,
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            var popup = modal(options, $('#modal_sizechart'));
+            $("#btn_sizechart").click(function() {
+                $('#modal_sizechart').css("display","block");
+                $('#modal_sizechart').modal('openModal');
+            });
+        });
+    </script>           
+<?php endif; ?>

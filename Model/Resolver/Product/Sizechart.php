@@ -7,9 +7,7 @@ declare(strict_types=1);
 
 namespace DevAwesome\Sizechart\Model\Resolver\Product;
 
-use DevAwesome\Base\Helper\Image as ImageHelper;
-use DevAwesome\Sizechart\Helper\Data;
-use Magento\Eav\Api\AttributeSetRepositoryInterface;
+use DevAwesome\Sizechart\Model\Sizechart as SizechartModel;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\Resolver\Value;
@@ -21,23 +19,15 @@ use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
  */
 class Sizechart implements ResolverInterface
 {
-    private AttributeSetRepositoryInterface $attributeSetRepository;
-    private ImageHelper $imageHelper;
-    private Data $dataHelper;
+    private SizechartModel $sizeChart;
 
     /**
-     * @param AttributeSetRepositoryInterface $attributeSetRepository
-     * @param ImageHelper $imageHelper
-     * @param Data $dataHelper
+     * @param SizechartModel $sizeChart
      */
     public function __construct(
-        AttributeSetRepositoryInterface $attributeSetRepository,
-        ImageHelper $imageHelper,
-        Data $dataHelper
+        SizechartModel $sizeChart
     ) {
-        $this->attributeSetRepository = $attributeSetRepository;
-        $this->imageHelper = $imageHelper;
-        $this->dataHelper = $dataHelper;
+        $this->sizeChart = $sizeChart;
     }
 
     /**
@@ -61,18 +51,8 @@ class Sizechart implements ResolverInterface
         }
 
         try {
-            $imageUrl = null;
             $product = $value['model'];
-            $attributeSetId = $product->getAttributeSetId();
-            $productType = $product->getTypeId();
-            $allowedProductTypes = $this->dataHelper->getAllowedProductTypes();
-
-            if (in_array($productType, $allowedProductTypes)) {
-                $attributeSet = $this->attributeSetRepository->get($attributeSetId);
-                if ($attributeSet && $attributeSet->getData('sizechart_image') !== null) {
-                    $imageUrl = $this->imageHelper->getMediaUrl($attributeSet->getData('sizechart_image'));
-                }
-            }
+            $imageUrl = $this->sizeChart->getSizeChartImageUrl($product);
             return $imageUrl;
         } catch (LocalizedException $e) {
             throw new LocalizedException(__($e->getMessage()), $e);

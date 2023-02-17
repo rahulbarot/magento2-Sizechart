@@ -15,6 +15,10 @@ use Magento\Store\Model\ScopeInterface;
 class Data extends AbstractHelper
 {
     const ALLOWED_PRODUCT_TYPES = "sizechart/general/allowed_product_types";
+    const LINK_TEXT = "sizechart/modal/link_text";
+    const MODAL_TITLE = "sizechart/modal/title";
+    const MODAL_CLOSE_BTN_TEXT = "sizechart/modal/btn_text";
+    const MODAL_COMMENTS = "sizechart/modal/comments";
 
     /**
      * @var ScopeConfigInterface
@@ -43,5 +47,49 @@ class Data extends AbstractHelper
             ScopeInterface::SCOPE_STORE
         );
         return explode(',', $allowedProductTypes);
+    }
+
+    /**
+     * Sizechart link text
+     */
+    public function getLinkText()
+    {
+        return $this->scopeConfig->getValue(
+            self::LINK_TEXT,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Sizechart modal title
+     */
+    public function getModalTitle()
+    {
+        return $this->scopeConfig->getValue(
+            self::MODAL_TITLE,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Sizechart modal close button text
+     */
+    public function getCloseBtnText()
+    {
+        return $this->scopeConfig->getValue(
+            self::MODAL_CLOSE_BTN_TEXT,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Sizechart modal comments
+     */
+    public function getModalComments()
+    {
+        return $this->scopeConfig->getValue(
+            self::MODAL_COMMENTS,
+            ScopeInterface::SCOPE_STORE
+        );
     }
 }
